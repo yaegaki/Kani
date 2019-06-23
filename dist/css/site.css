@@ -1,0 +1,274 @@
+﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;;
+}
+
+ul {
+    padding-left: 1rem;
+}
+
+app {
+    position: relative;
+    display: grid;
+    height: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.top-row {
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.main {
+    background: #1e1e1e;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+    .main-header {
+        justify-content: flex-end;
+        margin-right: 1rem;
+    }
+
+
+.sidebar {
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    width: 30vw;
+    color: white;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+    .sidebar .top-row {
+        background-color: rgba(0,0,0,0.4);
+    }
+
+    .sidebar .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .sidebar .oi {
+        width: .6rem;
+        font-size: .5rem;
+        vertical-align: middle;
+    }
+
+    .sidebar .treeview {
+        overflow: auto;
+        font-family: Consolas,Liberation Mono,Menlo,Courier,monospace;
+    }
+
+    .sidebar .treeview-node-header {
+        margin: .3rem;
+        cursor: pointer;
+        display: flex;
+        align-content: center;
+    }
+
+    .sidebar .treeview-node-text {
+        flex: 1;
+        padding: .1em .3em;
+    }
+
+    .sidebar .treeview-node-text:hover {
+        background: rgba(0,0,0,0.4);
+    }
+
+.content {
+    overflow: hidden;
+}
+
+
+.valid.modified:not([type=checkbox]) {
+    outline: 1px solid #26b050;
+}
+
+.invalid {
+    outline: 1px solid red;
+}
+
+.validation-message {
+    color: red;
+}
+
+
+.editor-container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.editor-toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: .3rem;
+}
+    .editor-toolbar .oi.disable {
+        color: rgba(68, 89, 110, 1);
+    }
+
+    .editor-toolbar .oi {
+        color: rgba(122, 192, 255, 1);
+        display: block;
+        margin: .5rem;
+        cursor: pointer;
+    }
+
+
+.dark-editor {
+    color: white;
+    white-space: pre;
+    font-family: Consolas,Liberation Mono,Menlo,Courier,monospace;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
+
+.line-number {
+    text-align: right;
+    color: #2b91af;
+    word-break: normal;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    user-select: none;
+}
+
+span.reference {
+    cursor: pointer;
+}
+
+/* syntaxhighlight from dnSpy/Themes/dark.dntheme */
+
+span.d-comment {
+    color: #57a64a;
+}
+
+span.d-keyword {
+    color: #569cd6;
+}
+
+span.d-string, span.d-char {
+    color: #d69d85;
+}
+
+span.d-namespace {
+    color: #ffd700;
+}
+
+span.d-type {
+    color: #4ec9b0;
+}
+
+span.d-sealedtype {
+    color: #4ec9b0;
+}
+
+span.d-statictype {
+    color: #378d7b;
+}
+
+span.d-delegate {
+    color: #33ccff;
+}
+
+span.d-enum {
+    color: #b8d7a3;
+}
+
+span.d-interface {
+    color: #9b9b82;
+}
+
+span.d-valuetype {
+    color: #009933;
+}
+
+span.d-module {
+    color: #378d7b;
+}
+
+span.d-typegenericparameter {
+    color: #4b8595;
+}
+
+span.d-methodgenericparameter {
+    color: #4b8595;
+}
+
+span.d-imethod {
+    color: #ff8000;
+}
+
+span.d-smethod {
+    color: #e67300;
+}
+
+span.d-emethod {
+    color: #cc6600;
+    font-style: italic;
+}
+
+span.d-ifield {
+    color: #aa70ff;
+}
+
+span.d-efield {
+    color: #bd63c5;
+}
+
+span.d-lfield {
+    color: #c266ff;
+}
+
+span.d-sfield {
+    color: #8d8dc6;
+}
+
+span.d-ievent {
+    color: #cc6699;
+}
+
+span.d-sevent {
+    color: #db94b8;
+}
+
+span.d-iproperty {
+    color: #248f8f;
+}
+
+span.d-sproperty {
+    color: #1f8e8e;
+}
+
+span.d-local {
+    color: #dcdcdc;
+}
+
+span.d-parameter {
+    color: #dcdcdc;
+    font-weight: bold;
+}
+
+span.d-label {
+    color: #806f4d;
+}
+
+span.d-opcode {
+    color: #ad5c85;
+}
+
+span.d-error {
+    color: red;
+}
+
+
+
+
