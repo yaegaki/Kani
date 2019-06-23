@@ -1,0 +1,16 @@
+@inject IDocumentHistoryService DocumentHistoryService
+@inherits LayoutComponentBase
+
+<div class="sidebar">
+    <NavMenu />
+</div>
+
+<div class="main">
+    <div class="top-row main-header">
+        <a href="https://github.com/yaegaki/Kani" target="_blank">Github</a>
+    </div>
+
+    <div class="content">
+        @Body
+    </div>
+</div>

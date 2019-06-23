@@ -1,0 +1,57 @@
+@using Kani.Models.TreeView
+
+<div>
+    <div class="treeview-node-header">
+        @if (!IsLeaf)
+        {
+            <div @onclick="@(() => IsExpanded = !IsExpanded)">
+                <span class="@CaretClass" aria-hidden="true"></span>
+            </div>
+        }
+        
+        <div class="treeview-node-text" @onclick="@OnTextClick">
+            <span>
+                @foreach (var text in Texts) {<span class="@text.CssClass">@text.Text</span>}
+            </span>
+        </div>
+    </div>
+    @if (!IsLeaf)
+    {
+        @if (IsExpanded)
+        {
+            <ul>
+                @foreach (var child in EnumerateChildren())
+                {
+                    <TreeViewNode Item="@child"/>
+                }
+            </ul>
+        }
+    }
+</div>
+
+@code
+{
+    [Parameter]
+    public ITreeViewItem Item { get; set; }
+
+    [Parameter]
+    public bool IsExpanded { get; set; }
+
+    public string CaretClass
+        => IsExpanded ? "oi oi-caret-bottom" : "oi oi-caret-right";
+
+    public IReadOnlyList<TextRun> Texts
+        => Item?.Texts ?? Array.Empty<TextRun>();
+    
+    public bool IsLeaf
+        => Item != null ? Item.IsLeaf : true;
+    
+    public IEnumerable<ITreeViewItem> EnumerateChildren()
+        => Item?.EnumerateChildren() ?? Enumerable.Empty<ITreeViewItem>();
+        
+    private void OnTextClick()
+    {
+        this.IsExpanded = true;
+        this.Item?.Select();
+    }
+}

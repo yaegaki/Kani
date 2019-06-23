@@ -1,0 +1,39 @@
+@using Kani.Models.TreeView
+@inject IJSRuntime JSRuntime
+
+<div class="treeview" @ref="elementRef">
+    @if (RootItems != null)
+    {
+        @foreach (var item in RootItems)
+        {
+            <TreeViewNode Item="@item"/>
+        }
+    }
+</div>
+
+@code
+{
+    [Parameter]
+    public IEnumerable<ITreeViewItem> RootItems { get; set; }
+    
+    [Parameter]
+    public EventCallback<string[]> OnDropFiles { get; set; }
+    
+    private ElementRef elementRef;
+    private bool isFirstRender = true;
+
+    [JSInvokable]
+    public async Task JSOnDropFiles(string[] files)
+    {
+        await OnDropFiles.InvokeAsync(files);
+    }
+
+    protected override async Task OnAfterRenderAsync()
+    {
+        if (this.isFirstRender)
+        {
+            await JSRuntime.InvokeAsync<object>("prepareDrop", DotNetObjectRef.Create(this), elementRef);
+            this.isFirstRender = false;
+        }
+    }
+}

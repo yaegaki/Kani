@@ -1,0 +1,50 @@
+@using System.Reflection
+@using System.Threading
+@using dnlib.DotNet
+@using Kani.Models.TreeView
+@implements IDisposable
+@inject HttpClient Http
+@inject IAssemblyRegistry AssemblyRegistry
+@inject IDocumentService DocumentService
+@inject IJSRuntime JSRuntime
+
+<TreeView RootItems="@items" OnDropFiles="@OnDropFiles"/>
+
+@code {
+    IEnumerable<ITreeViewItem> items;
+
+    protected override async Task OnInitAsync ()
+    {
+        this.items = Enumerable.Empty<ITreeViewItem>();
+
+        this.AssemblyRegistry.OnAssemblyRegistered += OnAssemblyRegistered;
+        await this.AssemblyRegistry.RegisterAsync("/_framework/_bin/Kani.dll", CancellationToken.None);
+    }
+
+    private async Task OnDropFiles(string[] files)
+    {
+        foreach (var file in files)
+        {
+            try
+            {
+                await this.AssemblyRegistry.RegisterAsync(file, CancellationToken.None);
+            }
+            catch
+            {
+            }
+        }
+    }
+
+    private void OnAssemblyRegistered(AssemblyDef assembly)
+    {
+        this.items = this.items
+            .Concat(new[] { new AssemblyTreeViewItem(this.DocumentService, assembly) })
+            .ToArray();
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        this.AssemblyRegistry.OnAssemblyRegistered -= OnAssemblyRegistered;
+    }
+}

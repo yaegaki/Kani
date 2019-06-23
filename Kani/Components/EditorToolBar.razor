@@ -1,0 +1,33 @@
+@implements IDisposable
+@inject IDocumentHistoryService DocumentHistoryService
+
+<div class="editor-toolbar">
+    <span class="@BackCssClass" @onclick="@(() => this.DocumentHistoryService.Back())"/>
+    <span class="@ForwardCssClass" @onclick="@(() => this.DocumentHistoryService.Forward())"/>
+</div>
+
+@code {
+    private string BackCssClass
+        => $"oi oi-arrow-circle-left {BooleanToCssClass(this.DocumentHistoryService.CanBack)}";
+
+    private string ForwardCssClass
+        => $"oi oi-arrow-circle-right {BooleanToCssClass(this.DocumentHistoryService.CanForward)}";
+
+    protected override void OnInit()
+    {
+        this.DocumentHistoryService.OnStateChange += this.OnHistoryChange;
+    }
+
+    private void OnHistoryChange()
+    {
+        StateHasChanged();
+    }
+
+    private string BooleanToCssClass(bool value)
+        => value ? "enable" : "disable";
+
+    public void Dispose()
+    {
+        this.DocumentHistoryService.OnStateChange -= this.OnHistoryChange;
+    }
+}

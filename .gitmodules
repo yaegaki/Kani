@@ -1,0 +1,3 @@
+[submodule "Libs/dnSpy"]
+	path = Libs/dnSpy
+	url = https://github.com/yaegaki/dnSpy.git
