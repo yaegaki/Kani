@@ -115,7 +115,7 @@ namespace Kani.Services
             {
                 try
                 {
-                    var url = $"/_framework/_bin/{assemblyRef.Name}.dll";
+                    var url = $"_framework/_bin/{assemblyRef.Name}.dll";
                     assemblyDef = await RegisterAsync(url, cancellationToken);
                 }
                 catch (Exception e)
