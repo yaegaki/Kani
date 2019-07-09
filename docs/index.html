@@ -7,11 +7,19 @@
     <base href="/Kani/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/site.css" rel="stylesheet" />
+    <link rel="script" href="serviceworker.js">
+    <link rel="manifest" href="manifest.json" />
 </head>
 <body>
     <app>Loading...</app>
 
     <script src="_framework/blazor.webassembly.js"></script>
     <script src="js/main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('serviceworker.js')
+                .then(() => console.log('Service Worker Registered'));
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,17 @@
+{
+  "name": "Kani .NET decompiler",
+  "short_name": "Kani",
+  "description": ".NET decompiler on the Browser.",
+  "icons": [
+    {
+      "src": "/images/kani192x192.png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/kani512x512.png",
+      "sizes": "512x512"
+    }
+  ],
+  "display": "standalone",
+  "start_url": "/Kani/"
+}
