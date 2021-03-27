@@ -13,7 +13,7 @@
     private string ForwardCssClass
         => $"oi oi-arrow-circle-right {BooleanToCssClass(this.DocumentHistoryService.CanForward)}";
 
-    protected override void OnInit()
+    protected override void OnInitialized()
     {
         this.DocumentHistoryService.OnStateChange += this.OnHistoryChange;
     }

@@ -19,8 +19,7 @@
     [Parameter]
     public EventCallback<string[]> OnDropFiles { get; set; }
     
-    private ElementRef elementRef;
-    private bool isFirstRender = true;
+    private ElementReference elementRef;
 
     [JSInvokable]
     public async Task JSOnDropFiles(string[] files)
@@ -28,12 +27,11 @@
         await OnDropFiles.InvokeAsync(files);
     }
 
-    protected override async Task OnAfterRenderAsync()
+    protected override async Task OnAfterRenderAsync(bool isFirstRender)
     {
-        if (this.isFirstRender)
+        if (isFirstRender)
         {
-            await JSRuntime.InvokeAsync<object>("prepareDrop", DotNetObjectRef.Create(this), elementRef);
-            this.isFirstRender = false;
+            await JSRuntime.InvokeAsync<object>("prepareDrop", DotNetObjectReference.Create(this), elementRef);
         }
     }
 }

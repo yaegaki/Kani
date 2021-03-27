@@ -8,7 +8,7 @@ using Kani.Decompile;
 using Kani.Models;
 using Kani.Services;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.RenderTree;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.JSInterop;
 
 namespace Kani.Components
@@ -25,10 +25,10 @@ namespace Kani.Components
         private IDocument document;
         private object sync = new object();
         private CancellationTokenSource cts = new CancellationTokenSource();
-        private ElementRef elementRef;
+        private ElementReference elementRef;
         private bool documentChanged = true;
 
-        protected override void OnInit()
+        protected override void OnInitialized()
         {
             DocumentService.OnShown += OnShown;
 
@@ -72,7 +72,7 @@ namespace Kani.Components
             builder.CloseElement();
         }
 
-        protected override async Task OnAfterRenderAsync()
+        protected override async Task OnAfterRenderAsync(bool isFirstRender)
         {
             if (this.documentChanged)
             {

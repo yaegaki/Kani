@@ -1,4 +1,3 @@
-@using System.Reflection
 @using System.Threading
 @using dnlib.DotNet
 @using Kani.Models.TreeView
@@ -13,12 +12,12 @@
 @code {
     IEnumerable<ITreeViewItem> items;
 
-    protected override async Task OnInitAsync ()
+    protected override async Task OnInitializedAsync()
     {
         this.items = Enumerable.Empty<ITreeViewItem>();
 
         this.AssemblyRegistry.OnAssemblyRegistered += OnAssemblyRegistered;
-        await this.AssemblyRegistry.RegisterAsync("_framework/_bin/Kani.dll", CancellationToken.None);
+        await this.AssemblyRegistry.RegisterAsync("_framework/Kani.dll", CancellationToken.None);
     }
 
     private async Task OnDropFiles(string[] files)

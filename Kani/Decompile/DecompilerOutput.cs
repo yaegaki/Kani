@@ -3,7 +3,8 @@ using System.Text;
 using dnSpy.Contracts.Decompiler;
 using dnSpy.Contracts.Text;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.RenderTree;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace Kani.Decompile
 {
@@ -71,11 +72,11 @@ namespace Kani.Decompile
             if (reference != null && this.eventReceiver != null)
             {
                 var _eventReceiver = this.eventReceiver;
-                var callback = EventCallback.Factory.Create<UIMouseEventArgs>(_eventReceiver, () =>
+                var callback = EventCallback.Factory.Create<MouseEventArgs>(_eventReceiver, () =>
                 {
                     _eventReceiver.ShowReference(reference, flags);
                 });
-                this.builder.AddAttribute<UIMouseEventArgs>(this.NextSequence++, "onclick", callback);
+                this.builder.AddAttribute<MouseEventArgs>(this.NextSequence++, "onclick", callback);
                 if (string.IsNullOrEmpty(cssClass))
                 {
                     cssClass = "reference";
